@@ -1,0 +1,112 @@
+nasm -g -felf64 <codigo asm>
+ld -g -o <nombre del compilado> -e <main> <codigo objeto>
+ddd <codigo compilado>
+
+
+   /*  
+startRegisters:
+    MOV rax,0
+    MOV rbx,0
+    MOV rcx,0
+    Mov rdx,0
+menssage:
+    MOV rax,0x01
+    MOV rdi,0x01
+    MOV rsi,msg
+    MOV rdx,lenMsg
+    SYSCALL
+    
+
+input:;input de fecha
+    MOV rax,0x00
+    MOV rdi,0x00
+    MOV rsi,anio
+    MOV rdx,4
+    SYSCALL
+    ;JMP ini
+    JMP printInput
+    ;JMP convert
+printInput:
+    MOV rax,0x01
+    MOV rdi,0x01
+    MOV rsi,anio
+    MOV rdx,4
+    SYSCALL
+ini:
+    MOV rax,0x01
+    MOV rdi,0x01
+    MOV rsi,init
+    MOV rdx,lenInit
+    SYSCALL
+close:
+    JMP ini
+    
+    MOV rsp,rbp
+    POP rbp
+    MOV rax,60
+    MOV rdi,0
+    SYSCALL
+
+convert:
+    MOV rcx,rdx
+    xor ebx,ebx
+    .next_digit:
+    movzx eax,byte[esi]
+    inc esi
+    sub al,'0'
+    imul ebx,10
+    add ebx,eax
+    loop .next_digit
+    mov eax,ebx
+    
+    ;MOV anio,eax
+    ;MOV rax,0x01
+    ;MOV rdi,0x01
+    ;MOV rsi,anio
+    ;MOV rdx,0x08
+    ;SYSCALL
+PASO1:
+    MOV rdx,0
+    MOV rax,anio
+    MOV rcx,4
+    DIV rcx
+    CMP rdx,0x00
+    JZ BISIESTO
+    JNZ NOBISISESTO
+BISIESTO:
+    MOV rax,0x01
+    MOV rdi,0x01
+    MOV rsi,aMsg
+    MOV rdx,lenA
+    SYSCALL
+NOBISISESTO:
+    MOV rax,0x01
+    MOV rdi,0x01
+    MOV rsi,aMsg
+    MOV rdx,lenA
+    SYSCALL
+
+ */
+ /* 
+int fib(int n){
+    if(n<=1){
+        return n;
+    }
+    else{
+    return fib(n-1)+fib(n-2);
+    }
+}
+int main(){
+    int n = 9;
+    printf("%d",fib(n));
+    getchar();
+    return 0;
+} */
+
+    ;init registros
+    MOV rax,0x00
+    MOV rbx,0x00
+    MOV rcx,0x00
+    MOV rdx,0x00
+    MOV rsi,0x00
+    MOV rdi,0x00
